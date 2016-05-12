@@ -11,6 +11,8 @@ void ofApp::setup(){
         exit();
     }
     ofSoundStreamSetup(8, 0);
+    
+    audio.play();
 
 }
 
