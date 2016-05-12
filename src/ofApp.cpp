@@ -2,10 +2,13 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+    
+    ofSetDataPathRoot("../Resources/data/");
+
     video.load("marc.mp4");
     video.play();
     
-    if(!audio.open_file("ApproxPi_8ChannelNew.wav"))
+    if(!audio.open_file("data/8ChannelTestN.wav"))
     {
         cout << "Error opening file" << endl;
         exit();
@@ -50,7 +53,7 @@ void ofApp::draw(){
     
     ofTexture& tex = video.getTexture();
     
-    tex.drawSubsection(0, 0, 320, 256, 0, 0, 320, 256);
+    tex.drawSubsection(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 0, 0, 320, 256);
     
 //    tex.bind();
 //    glBegin(GL_QUADS);
@@ -66,7 +69,7 @@ void ofApp::draw(){
 void ofApp::draw_w2(ofEventArgs & args){
     ofTexture& tex = video.getTexture();
     
-    tex.drawSubsection(0, 0, 320, 256, 320, 0, 320, 256);
+    tex.drawSubsection(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 320, 0, 320, 256);
 
     
 //    tex.bind();
@@ -81,7 +84,7 @@ void ofApp::draw_w2(ofEventArgs & args){
 
 void ofApp::draw_w3(ofEventArgs & args){
     ofTexture& tex = video.getTexture();
-    tex.drawSubsection(0, 0, 320, 256, 640, 0, 320, 256);
+    tex.drawSubsection(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 640, 0, 320, 256);
 
 //    tex.bind();
 //    glBegin(GL_QUADS);
@@ -94,7 +97,7 @@ void ofApp::draw_w3(ofEventArgs & args){
 }
 void ofApp::draw_w4(ofEventArgs & args){
     ofTexture& tex = video.getTexture();
-    tex.drawSubsection(0, 0, 320, 256, 0, 256, 320, 256);
+    tex.drawSubsection(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 0, 256, 320, 256);
     
 //    tex.bind();
 //    glBegin(GL_QUADS);
@@ -107,7 +110,7 @@ void ofApp::draw_w4(ofEventArgs & args){
 }
 void ofApp::draw_w5(ofEventArgs & args){
     ofTexture& tex = video.getTexture();
-    tex.drawSubsection(0, 0, 320, 256, 320, 256, 320, 256);
+    tex.drawSubsection(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 320, 256, 320, 256);
 
 //    tex.bind();
 //    glBegin(GL_QUADS);
@@ -120,7 +123,7 @@ void ofApp::draw_w5(ofEventArgs & args){
 }
 void ofApp::draw_w6(ofEventArgs & args){
     ofTexture& tex = video.getTexture();
-    tex.drawSubsection(0, 0, 320, 256, 640, 256, 320, 256);
+    tex.drawSubsection(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 640, 256, 320, 256);
     
 //    tex.bind();
 //    glBegin(GL_QUADS);
