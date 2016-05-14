@@ -19,6 +19,7 @@ void ofApp::setup(){
     audio.play();
     video.setPaused(pauseVideo);
     audio.togglePlay();
+    myFont.load("Futura-Medium.ttf", fontSize);
     
     ofSoundStreamSetup(8, 0);
 }
@@ -58,36 +59,54 @@ void ofApp::update(){
 void ofApp::draw() {
     tex.allocate(video.getPixels());
     tex.drawSubsection(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 0, 0, 320, 256);
+    if (status) {
+        drawInfo(1);
+    }
 }
 
 
 //--------------------------------------------------------------
 void ofApp::draw_w2(ofEventArgs & args) {
     tex.drawSubsection(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 320, 0, 320, 256);
+    if (status) {
+        drawInfo(2);
+    }
 }
 
 
 //--------------------------------------------------------------
 void ofApp::draw_w3(ofEventArgs & args) {
     tex.drawSubsection(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 640, 0, 320, 256);
+    if (status) {
+        drawInfo(3);
+    }
 
 }
 
 //--------------------------------------------------------------
 void ofApp::draw_w4(ofEventArgs & args) {
     tex.drawSubsection(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 0, 256, 320, 256);
+    if (status) {
+        drawInfo(4);
+    }
     
 }
 
 //--------------------------------------------------------------
 void ofApp::draw_w5(ofEventArgs & args) {
     tex.drawSubsection(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 320, 256, 320, 256);
+    if (status) {
+        drawInfo(5);
+    }
 
 }
 
 //--------------------------------------------------------------
 void ofApp::draw_w6(ofEventArgs & args) {
     tex.drawSubsection(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 640, 256, 320, 256);
+    if (status) {
+        drawInfo(6);
+    }
 
 }
 
@@ -120,8 +139,47 @@ void ofApp::keyPressed(int key){
     // mute audio
     if (key == 'm')
         audio.toggleMute();
+    if (key == 'w')
+        status = !status;
 }
+//--------------------------------------------------------------
 
+void ofApp::drawInfo(unsigned short wN) {
+    int xMargin = 100;
+    int yMargin = fontSize*2.0;
+    
+    ofPushMatrix();
+    ofScale(0.25, 0.25);
+    
+    // draw window number
+    ofSetColor(255, 255, 255);
+    myFont.drawString("Window: " + to_string(wN), xMargin, yMargin*1);
+    
+    // draw play/pause status
+    if (pauseVideo) {
+        ofSetColor(0, 0, 255);
+        myFont.drawString("Paused", xMargin, yMargin*2);
+    } else {
+        ofSetColor(0, 255, 0);
+        myFont.drawString("Playing", xMargin, yMargin*2);
+    }
+    
+    // draw time elapsed status
+    TimeStruct dur = audio.getCurrentTime();
+    string t_elapsed = "Time elapsed: " + to_string(dur.minutes) + ":" + to_string(dur.seconds);
+    ofSetColor(255, 255, 255);
+    myFont.drawString(t_elapsed, xMargin, yMargin*3);
+    
+    // draw mute status
+    if (audio.isMuted()) {
+        ofSetColor(255, 0, 0);
+        myFont.drawString("Muted", xMargin, yMargin*4);
+    }
+    
+    // reset colors so they don't affec video texture
+    ofSetColor(255, 255, 255);
+    ofPopMatrix();
+}
 //--------------------------------------------------------------
 void ofApp::exit(){
     ofSoundStreamClose();

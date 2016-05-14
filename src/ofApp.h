@@ -25,22 +25,17 @@ class ofApp : public ofBaseApp{
     void draw_w6(ofEventArgs & args);
 
     void keyPressed(int key);
-//    void keyReleased(int key);
-//    void mouseMoved(int x, int y );
-//    void mouseDragged(int x, int y, int button);
-//    void mousePressed(int x, int y, int button);
-//    void mouseReleased(int x, int y, int button);
-//    void mouseEntered(int x, int y);
-//    void mouseExited(int x, int y);
-//    void windowResized(int w, int h);
-//    void dragEvent(ofDragInfo dragInfo);
-//    void gotMessage(ofMessage msg);
     void audioOut( float * output, int bufferSize, int nChannels );
+    void drawInfo(unsigned short wN);
     void exit();
 
     ofVideoPlayer video;
     WavPlayer audio;
     ofTexture tex;
     
+    ofTrueTypeFont myFont;
+    int fontSize = 100;
+    
     bool pauseVideo = true;
+    bool status = false;
 };
