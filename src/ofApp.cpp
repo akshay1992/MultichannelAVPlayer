@@ -22,8 +22,6 @@ void ofApp::setup(){
     myFont.load("Futura-Medium.ttf", fontSize);
     
     ofSoundStreamSetup(8, 0);
-    
-    ofBackground(30, 30, 30);
 }
 
 //--------------------------------------------------------------
@@ -54,8 +52,6 @@ void ofApp::setup_w6() {
 void ofApp::update(){
     video.update();
     tex = video.getTexture();
-    
-    cout << "Update" << endl;
 }
 
 //--------------------------------------------------------------
