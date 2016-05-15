@@ -2,7 +2,7 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-    
+    status = true;  // Show status initially
     ofSetDataPathRoot("../Resources/data/");
 
     video.load("marc.mp4");
@@ -22,11 +22,12 @@ void ofApp::setup(){
     myFont.load("Futura-Medium.ttf", fontSize);
     
     ofSoundStreamSetup(8, 0);
+    
+    ofBackground(30, 30, 30);
 }
 
 //--------------------------------------------------------------
 void ofApp::setup_w2() {
-    
 }
 
 //--------------------------------------------------------------
@@ -53,59 +54,73 @@ void ofApp::setup_w6() {
 void ofApp::update(){
     video.update();
     tex = video.getTexture();
+    
+    cout << "Update" << endl;
 }
 
 //--------------------------------------------------------------
 void ofApp::draw() {
-    tex.allocate(video.getPixels());
-    tex.drawSubsection(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 0, 0, 320, 256);
     if (status) {
         drawInfo(1);
+    }
+    else {
+        tex.allocate(video.getPixels());
+        tex.drawSubsection(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 0, 0, 320, 256);
     }
 }
 
 
 //--------------------------------------------------------------
 void ofApp::draw_w2(ofEventArgs & args) {
-    tex.drawSubsection(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 320, 0, 320, 256);
     if (status) {
         drawInfo(2);
+    }
+    else {
+        tex.drawSubsection(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 320, 0, 320, 256);
     }
 }
 
 
 //--------------------------------------------------------------
 void ofApp::draw_w3(ofEventArgs & args) {
-    tex.drawSubsection(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 640, 0, 320, 256);
     if (status) {
         drawInfo(3);
+    }
+    else {
+        tex.drawSubsection(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 640, 0, 320, 256);
     }
 
 }
 
 //--------------------------------------------------------------
 void ofApp::draw_w4(ofEventArgs & args) {
-    tex.drawSubsection(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 0, 256, 320, 256);
     if (status) {
         drawInfo(4);
+    }
+    else {
+        tex.drawSubsection(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 0, 256, 320, 256);
     }
     
 }
 
 //--------------------------------------------------------------
 void ofApp::draw_w5(ofEventArgs & args) {
-    tex.drawSubsection(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 320, 256, 320, 256);
     if (status) {
         drawInfo(5);
+    }
+    else {
+        tex.drawSubsection(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 320, 256, 320, 256);
     }
 
 }
 
 //--------------------------------------------------------------
 void ofApp::draw_w6(ofEventArgs & args) {
-    tex.drawSubsection(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 640, 256, 320, 256);
     if (status) {
         drawInfo(6);
+    }
+    else {
+        tex.drawSubsection(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 640, 256, 320, 256);
     }
 
 }
@@ -147,6 +162,8 @@ void ofApp::keyPressed(int key){
 void ofApp::drawInfo(unsigned short wN) {
     int xMargin = 100;
     int yMargin = fontSize*2.0;
+    ofBackground(30, 30, 30);
+
     
     ofPushMatrix();
     ofScale(0.25, 0.25);
