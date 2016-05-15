@@ -12,7 +12,7 @@ void ofApp::setup(){
     if(!audio.open_file(audioPath))
     {
         cout << "Error opening file" << endl;
-        exit();
+        ofExit();
     }
     
     video.play();
@@ -195,5 +195,8 @@ void ofApp::drawInfo(unsigned short wN) {
 }
 //--------------------------------------------------------------
 void ofApp::exit(){
+    if(video.isLoaded()) {
+        video.close();
+    }
     ofSoundStreamClose();
 }
