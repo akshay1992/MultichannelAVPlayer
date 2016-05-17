@@ -21,7 +21,7 @@ void ofApp::setup(){
     audio.togglePlay();
     myFont.load("Futura-Medium.ttf", fontSize);
     
-    ofSoundStreamSetup(8, 0);
+    ofSoundStreamSetup(NUM_CHANNELS, 0);
 }
 
 //--------------------------------------------------------------
@@ -196,4 +196,7 @@ void ofApp::drawInfo(unsigned short wN) {
 //--------------------------------------------------------------
 void ofApp::exit(){
     ofSoundStreamClose();
+    if (video.isLoaded()) {
+        video.close();
+    }
 }
