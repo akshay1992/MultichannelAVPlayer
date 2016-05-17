@@ -7,6 +7,10 @@
 
 #include "ofMain.h"
 #include "WavPlayer.h"
+#include "ofxOsc.h"
+
+#define PORT 12345
+#define HOST "localhost"
 
 class ofApp : public ofBaseApp{
 
@@ -31,6 +35,9 @@ class ofApp : public ofBaseApp{
     void drawInfo(unsigned short wN);
     void exit();
 
+    ofxOscSender sender;
+    ofxOscReceiver receiver;
+    
     ofVideoPlayer video;
     WavPlayer audio;
     ofTexture tex;
