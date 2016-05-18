@@ -171,21 +171,12 @@ void ofApp::keyPressed(int key){
         ofxOscMessage m;
         m.setAddress("\togglePlay");
         sender.sendMessage( m );
-        
-        audio.togglePlay();
-        pauseVideo = !pauseVideo;
-        video.setPaused(pauseVideo);
     }
     // reset and pause video and audio
     if (key == '0') {
         ofxOscMessage m;
         m.setAddress("\reset");
         sender.sendMessage( m );
-
-        audio.stop();
-        pauseVideo = true;
-        video.setPaused(pauseVideo);
-        video.setPosition(0);
     }
     // mute audio
     if (key == 'm')
@@ -193,16 +184,12 @@ void ofApp::keyPressed(int key){
         ofxOscMessage m;
         m.setAddress("\toggleMute");
         sender.sendMessage( m );
-        
-        audio.toggleMute();
     }
     if (key == 'w')
     {
         ofxOscMessage m;
         m.setAddress("\toggleStatus");
         sender.sendMessage( m );
-        
-        status = !status;
     }
     
     if (key == 's') {
