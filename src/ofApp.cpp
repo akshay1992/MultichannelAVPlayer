@@ -23,8 +23,8 @@ void ofApp::setup(){
     
     ofSoundStreamSetup(NUM_CHANNELS, 0);
     
-    receiver.setup(PORT);
-    sender.setup(HOST, PORT);
+    receiver.setup(RECEIVE_PORT);
+    sender.setup(SEND_HOST, SEND_PORT);
 }
 
 //--------------------------------------------------------------
@@ -51,6 +51,24 @@ void ofApp::setup_w6() {
     
 }
 
+void ofApp::togglePlay() {
+    audio.togglePlay();
+    pauseVideo = !pauseVideo;
+    video.setPaused(pauseVideo);
+}
+
+void ofApp::stopPlayback() {
+    audio.stop();
+    pauseVideo = true;
+    video.setPaused(pauseVideo);
+    video.setPosition(0);
+}
+
+void ofApp::toggleStatus() {
+    status = !status;
+}
+
+
 //--------------------------------------------------------------
 void ofApp::update(){
     video.update();
@@ -64,16 +82,11 @@ void ofApp::update(){
         receiver.getNextMessage(&m);
         if (m.getAddress() == "\togglePlay")
         {
-            audio.togglePlay();
-            pauseVideo = !pauseVideo;
-            video.setPaused(pauseVideo);
+            togglePlay();
         }
         if (m.getAddress() == "\reset")
         {
-            audio.stop();
-            pauseVideo = true;
-            video.setPaused(pauseVideo);
-            video.setPosition(0);
+            stopPlayback();
         }
         if (m.getAddress() == "\toggleMute")
         {
@@ -81,7 +94,7 @@ void ofApp::update(){
         }
         if (m.getAddress() == "\toggleStatus")
         {
-            status = !status;
+            toggleStatus();
         }
     }
 }
@@ -171,12 +184,16 @@ void ofApp::keyPressed(int key){
         ofxOscMessage m;
         m.setAddress("\togglePlay");
         sender.sendMessage( m );
+        
+        togglePlay();
     }
     // reset and pause video and audio
     if (key == '0') {
         ofxOscMessage m;
         m.setAddress("\reset");
         sender.sendMessage( m );
+        
+        stopPlayback();
     }
     // mute audio
     if (key == 'm')
@@ -184,20 +201,16 @@ void ofApp::keyPressed(int key){
         ofxOscMessage m;
         m.setAddress("\toggleMute");
         sender.sendMessage( m );
+        
+        audio.toggleMute();
     }
     if (key == 'w')
     {
         ofxOscMessage m;
         m.setAddress("\toggleStatus");
         sender.sendMessage( m );
-    }
-    
-    if (key == 's') {
-        ofxOscMessage m;
-        m.setAddress("\test");
-        m.addStringArg( "hello" );
-        m.addFloatArg( ofGetElapsedTimef() );
-        sender.sendMessage( m );
+        
+        toggleStatus();
     }
 }
 //--------------------------------------------------------------

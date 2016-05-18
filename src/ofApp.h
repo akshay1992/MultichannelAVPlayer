@@ -9,10 +9,10 @@
 #include "WavPlayer.h"
 #include "ofxOsc.h"
 
+#define SEND_PORT 12345
+#define SEND_HOST "matze.local"
 
-
-#define PORT 12345
-#define HOST "localhost"
+#define RECEIVE_PORT 12334
 
 class ofApp : public ofBaseApp{
 
@@ -36,6 +36,10 @@ class ofApp : public ofBaseApp{
     void audioOut( float * output, int bufferSize, int nChannels );
     void drawInfo(unsigned short wN);
     void exit();
+    
+    void togglePlay();
+    void stopPlayback();
+    void toggleStatus();
 
     ofxOscSender sender;
     ofxOscReceiver receiver;
