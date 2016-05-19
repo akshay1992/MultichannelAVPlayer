@@ -16,7 +16,9 @@
     #define SEND_PORT 12345
     #define SEND_HOST "matze.local"
     #define RECEIVE_PORT 12334
-#elif MATZE
+#endif
+
+#ifdef MATZE
     #define SEND_PORT 12334
     #define SEND_HOST "Akshay.local"
     #define RECEIVE_PORT 12345
