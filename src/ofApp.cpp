@@ -171,21 +171,27 @@ void ofApp::audioOut( float * output, int bufferSize, int nChannels ) {
     for (int i=0; i<bufferSize * nChannels; i+=nChannels)
     {
         for (int chan=0; chan<nChannels; chan++)
-            {
-                output[i+chan] = audio.audiofile.next_sample();
-            }
+        {
+            output[i+chan] = audio.audiofile.next_sample();
+        }
+        for (int chan=0; chan<(audio.audiofile.nChannels()-nChannels); chan++)
+        {
+            audio.audiofile.next_sample();
+        }
     }
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
     // pause video and audio
     if (key == ' ') {
+        togglePlay();
+        
         ofxOscMessage m;
         m.setAddress("\togglePlay");
         sender.sendMessage( m );
-        
-        togglePlay();
+
     }
     // reset and pause video and audio
     if (key == '0') {
