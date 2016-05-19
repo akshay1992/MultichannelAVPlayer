@@ -3,7 +3,7 @@
 #define WINDOW_WIDTH 1280
 #define WINDOW_HEIGHT 1024
 
-#define NUM_CHANNELS 2
+#define NUM_CHANNELS 8
 
 #include "ofMain.h"
 #include "WavPlayer.h"

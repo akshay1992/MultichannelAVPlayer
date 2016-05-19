@@ -15,6 +15,7 @@ void ofApp::setup(){
         exit();
     }
     
+    video.setLoopState(OF_LOOP_NONE);
     video.play();
     audio.play();
     video.setPaused(pauseVideo);
