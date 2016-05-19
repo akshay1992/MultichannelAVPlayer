@@ -9,10 +9,18 @@
 #include "WavPlayer.h"
 #include "ofxOsc.h"
 
-#define SEND_PORT 12345
-#define SEND_HOST "matze.local"
+#define AKSHAY
+//#define MATZE
 
-#define RECEIVE_PORT 12334
+#ifdef AKSHAY
+    #define SEND_PORT 12345
+    #define SEND_HOST "matze.local"
+    #define RECEIVE_PORT 12334
+#elif MATZE
+    #define SEND_PORT 12334
+    #define SEND_HOST "Akshay.local"
+    #define RECEIVE_PORT 12345
+#endif
 
 class ofApp : public ofBaseApp{
 
